@@ -13,7 +13,7 @@ import java.util.ArrayList;
 - 제한 사항
 	두 수는 1이상 1000000이하의 자연수입니다.
 */
-public class day201021_3 {
+public class Day201021_3 {
 	// 유클리드 호재법
 	public static int[] solution(int n, int m) {
 		int[] result = new int[2];
