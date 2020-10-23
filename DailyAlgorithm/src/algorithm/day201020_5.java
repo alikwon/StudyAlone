@@ -9,7 +9,7 @@ package algorithm;
 //
 //	- 제한 조건
 //		행렬 arr1, arr2의 행과 열의 길이는 500을 넘지 않습니다.
-public class day201020_5 {
+public class Day201020_5 {
 	public static int[][] solution(int[][] arr1, int[][] arr2) {
 		int[][] answer = new int[arr1.length][arr1[0].length];
 		for (int i = 0; i < arr1.length; i++) {
