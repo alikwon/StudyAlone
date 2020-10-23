@@ -38,27 +38,29 @@ public class FindPrimeNum {
 
 	public int solution2(int n) {
 		int answer = 0;
-		int[] arr = new int[n + 1]; // true 이면 해당 인덱스 소수.
-		arr[0] = arr[1] = 0;
+		boolean[] arr = new boolean[n + 1]; // true 이면 해당 인덱스 소수.
+		arr[0] = arr[1] = false;
 
 		for (int i = 2; i <= n; i += 1) {
-			arr[i] = 1;
+			arr[i] = true;
 		}
 
 		// 2 부터 숫자를 키워가며 배수들을 제외(false 할당)
-		for (int i = 2; i * i <= n; i ++) {
+		for (int i = 2; i * i <= n; i += 1) {
 			for (int j = i * i; j <= n; j += i) {
-				arr[j] = 0; // 2를 제외한 2의 배수 false
+				arr[j] = false; // 2를 제외한 2의 배수 false
 			}
 		}
 
 		for (int i = 0; i <= n; i += 1) {
-			if (1 == arr[i]) {
+			if (true == arr[i]) {
 				answer++;
 			}
 		}
 		return answer;
 	}
+
+	
 
 	public static void main(String[] args) {
 		FindPrimeNum f = new FindPrimeNum();
