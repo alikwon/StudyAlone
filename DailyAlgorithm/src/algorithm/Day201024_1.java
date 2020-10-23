@@ -40,14 +40,16 @@ public class Day201024_1 {
 		s = s.toLowerCase();
 		char[] arr = s.toCharArray();
 		for (int i = 0; i < arr.length; i++) {
-			if (arr[i] == ' ')
-				index = 0;
-			else {
-				if (index % 2 == 0) {
-					arr[i] -= ' ';
-				}
-				index++;
-			}
+//			if (arr[i] == ' ')
+//				index = 0;
+//			else {
+//				if (index % 2 == 0) {
+//					arr[i] -= ' ';
+//				}
+//				index++;
+//			}
+			index=arr[i]==' '?0:index+1;
+			arr[i]-=index%2==0?0:' ';
 		}
 		return String.valueOf(arr);
 	}
@@ -86,7 +88,7 @@ public class Day201024_1 {
 	public static void main(String[] args) {
 		Day201024_1 d = new Day201024_1();
 		String s = "TRY HELLO WORLD";
-		System.out.println(d.solution4(s));
+		System.out.println(d.solution2(s));
 	}
 
 }
