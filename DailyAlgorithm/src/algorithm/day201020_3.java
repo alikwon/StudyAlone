@@ -9,7 +9,7 @@ package algorithm;
 //	- 제한 조건 
 //		x는 10000000 이상, 10000000 이하인 정수입니다. 
 //		n은 1000 이하인 자연수입니다.
-public class day201020_3 {
+public class Day201020_3 {
 	public static long[] solution(int x, int n) {
 		long c = 0;
 		long[] answer = new long[n];
