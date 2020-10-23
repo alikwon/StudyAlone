@@ -12,7 +12,7 @@ package algorithm;
 	제한 조건
 		-n은 2이상 1000000이하의 자연수입니다.
 */
-public class day201022_2 {
+public class Day201022_2 {
 
 	public int solution(int n) {
 		int answer = 1;
@@ -63,7 +63,7 @@ public class day201022_2 {
 	
 
 	public static void main(String[] args) {
-		day201022_2 f = new day201022_2();
+		Day201022_2 f = new Day201022_2();
 		int n = 100;
 		System.out.println(f.solution2(n));
 	}
