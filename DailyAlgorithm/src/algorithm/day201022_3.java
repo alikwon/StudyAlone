@@ -11,7 +11,7 @@ package algorithm;
 	제한 사항
 		-n은 1이상, 50000000000000 이하인 양의 정수입니다.
 */
-public class day201022_3 {
+public class Day201022_3 {
 
 	public static long solution(long n) {
 		if(n==1)
