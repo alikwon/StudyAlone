@@ -15,7 +15,7 @@ package algorithm;
 //
 //- 제한 사항
 //	입력된 수, num은 1 이상 8000000 미만인 정수입니다.
-public class day201021_1 {
+public class Day201021_1 {
 	
 	public static int solution(int num) {
         int answer = 0;
