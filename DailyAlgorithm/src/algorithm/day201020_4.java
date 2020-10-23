@@ -9,7 +9,7 @@ import java.util.Scanner;
 //	
 //	- 제한 조건 
 //		n과 m은 각각 1000 이하인 자연수입니다.
-public class day201020_4 {
+public class Day201020_4 {
 
 	public static void solution(int a, int b) {
 		for (int i = 0; i < b; i++) {
