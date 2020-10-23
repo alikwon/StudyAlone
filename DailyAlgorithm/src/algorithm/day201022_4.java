@@ -12,7 +12,7 @@ package algorithm;
 		-s는 0으로 시작하지 않습니다.
 */
 
-public class day201022_4 {
+public class Day201022_4 {
 	public static int solution(String s) {
         String []arr=s.split("");
         if(arr[0].equals("-")){
