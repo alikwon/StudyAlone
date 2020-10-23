@@ -16,7 +16,7 @@ package algorithm;
 		-s의 길이는 8000이하입니다.
 		-n은 1 이상, 25이하인 자연수입니다.
 */
-public class day201022_1 {
+public class Day201022_1 {
 	public static String solution(String s, int n) {
 		String answer="";
 		char ch;
