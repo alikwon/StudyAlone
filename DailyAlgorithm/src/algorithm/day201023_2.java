@@ -19,7 +19,7 @@ package algorithm;
 */
 import java.util.Arrays;
 
-public class day201023_2 {
+public class Day201023_2 {
 
 	public String[] solution(String[] s, int n) {
 		for (int i = 0; i < s.length; i++) {
@@ -33,7 +33,7 @@ public class day201023_2 {
 	}
 
 	public static void main(String[] args) {
-		day201023_2 o = new day201023_2();
+		Day201023_2 o = new Day201023_2();
 		String [] s = {"sun","bed","car"};
 		String [] s2 = {"abce","abcd","cdx"};
 		int n = 1;
