@@ -10,7 +10,7 @@ package algorithm;
 	제한 사항
 		- s는 길이 1 이상, 길이 8 이하인 문자열입니다.
 */
-public class day201023_1 {
+public class Day201023_1 {
 
 	//charAt이용 , for문 돌리기
 	public boolean solution(String s) {
@@ -40,7 +40,7 @@ public class day201023_1 {
 	}
 	
 	public static void main(String[] args) {
-		day201023_1 h = new day201023_1();
+		Day201023_1 h = new Day201023_1();
 		String s = "12345";
 		System.out.println(h.solution(s)?
 				"숫자로만 구성":"숫자아닌거 섞였거나 4자리 혹은 6자리가 아님");
