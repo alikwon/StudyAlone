@@ -12,7 +12,9 @@ package day201020;
 //		s는 길이 4 이상, 20이하인 문자열입니다.
 public class HidePhoneNumber {
 	/*
-	 * 1.전달받은 문자열길이(len) 2.표시할 숫자 --> 끝에서 4개의 문자(num) 3.별표시 반복횟수 (starNum=len-4)
+	 * 1.전달받은 문자열길이(len) 
+	 * 2.표시할 숫자 --> 끝에서 4개의 문자(num) 
+	 * 3.별표시 반복횟수 (starNum=len-4)
 	 */
 	public String solution(String pNum) {
 		// pNum의 길이
@@ -27,7 +29,9 @@ public class HidePhoneNumber {
 	}
 
 	/*
-	 * 다른풀이 1. (전달받은 문자열의 길이 -4)만큼 "*"을 반복 후 결과에 넣고 2. 뒤에 끝 4개 문자를 붙여줌
+	 * 다른풀이 
+	 * 1. (전달받은 문자열의 길이 -4)만큼 "*"을 반복 후 결과에 넣고 
+	 * 2. 뒤에 끝 4개 문자를 붙여줌
 	 */
 	public String solution2(String pNum) {
 		String answer = "";
