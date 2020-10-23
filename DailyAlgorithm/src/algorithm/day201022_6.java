@@ -9,7 +9,7 @@ package algorithm;
 	제한 사항
 		n은 0 이상 3000이하인 정수입니다.
 */
-public class day201022_6 {
+public class Day201022_6 {
 	public int solution(int n) {
 		int answer=0;
 		for (int i = 1; i <= n/2; i++) {
