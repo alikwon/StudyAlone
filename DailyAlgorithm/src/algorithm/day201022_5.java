@@ -9,7 +9,7 @@ package algorithm;
 	제한 조건
 		-n은 길이 10,000이하인 자연수입니다.
 */
-public class day201022_5 {
+public class Day201022_5 {
 	public String solution(int n) {
 		String answer="";
 		for (int i = 1; i <= n; i++) {
@@ -18,7 +18,7 @@ public class day201022_5 {
 		return answer;
 	}
 	public static void main(String[] args) {
-		day201022_5 s = new day201022_5();
+		Day201022_5 s = new Day201022_5();
 		int n = 1;
 		System.out.println(s.solution(n));
 	}
