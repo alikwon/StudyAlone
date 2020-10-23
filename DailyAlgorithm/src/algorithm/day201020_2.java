@@ -10,7 +10,7 @@ package algorithm;
 //
 //	- 제한 조건
 //		s는 길이 4 이상, 20이하인 문자열입니다.
-public class day201020_2 {
+public class Day201020_2 {
 	/*
 	 * 1.전달받은 문자열길이(len) 
 	 * 2.표시할 숫자 --> 끝에서 4개의 문자(num) 
@@ -63,7 +63,7 @@ public class day201020_2 {
 	}
 
 	public static void main(String[] args) {
-		day201020_2 hp = new day201020_2();
+		Day201020_2 hp = new Day201020_2();
 		String pNum = "01031986937";
 		System.out.println(hp.solution4(pNum));
 	}
