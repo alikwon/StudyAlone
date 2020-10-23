@@ -14,7 +14,7 @@ package algorithm;
 		- arr은 길이 1 이상인 배열입니다.
 		- 인덱스 i, j에 대해 i ≠ j이면 arr[i] ≠ arr[j] 입니다.
 */
-public class day201021_2 {
+public class Day201021_2 {
 	public static int[] solution(int[] arr) {
 		if (arr.length <= 1) {
 			int[] answer = { -1 };
