@@ -10,7 +10,7 @@ import java.util.Scanner;
 //
 //	- 제한 조건
 //		x는 1 이상, 10000 이하인 정수입니다.
-public class day201020_1 {
+public class Day201020_1 {
 	public static boolean solution(int x) {
 		int a = x;
 		int sum = 0;
