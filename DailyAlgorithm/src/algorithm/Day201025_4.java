@@ -81,15 +81,17 @@ public class Day201025_4 {
 			if (c[i % c.length] == answers[i])
 				cnt[2]++;
 		}
-		
+		// 최고점수
 		int max=Math.max(cnt[0], Math.max(cnt[1], cnt[2]));
+		// 최고점수자의 수
 		int winner =0;
 		for (int i = 0; i < cnt.length; i++) {
 			if(max==cnt[i]) winner++;
 		}
 		
-		int []answer=new int[winner];
 		int index=0;
+		// 최고 점수자의 수만큼 배열생성
+		int []answer=new int[winner];
 		for (int i = 0; i < cnt.length; i++) {
 			if(max==cnt[i]) answer[index]=i+1;
 			index++;
