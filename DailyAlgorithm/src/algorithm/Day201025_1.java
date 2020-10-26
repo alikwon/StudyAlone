@@ -33,7 +33,7 @@ public class Day201025_1 {
 	
 	//다른사람 풀이
 	public String solution2(int a, int b) {
-	      int[] c = {31,29,31,30,31,30,31,31,30,31,30,31};
+	int[] c = {31,29,31,30,31,30,31,31,30,31,30,31};
 	      String[] s ={"FRI","SAT","SUN","MON","TUE","WED","THU"};
 	      int aDate = 0;
 	      for(int i = 0 ; i< a-1; i++){
@@ -43,6 +43,7 @@ public class Day201025_1 {
 	      return s[aDate %7];
 	  }
 	public static void main(String[] args){
-		
+		Day201025_1 d = new Day201025_1();
+		System.out.println(d.solution(5, 24));
 	}
 }
