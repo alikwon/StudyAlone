@@ -1,5 +1,8 @@
 package algorithm;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Arrays;
 
 /*
@@ -27,7 +30,12 @@ import java.util.Arrays;
 		- commands의 각 원소는 길이가 3입니다.
 */
 public class Day201025_3 {
-
+	
+	/* 
+	 1. i,j를 이용해서 먼저 배열을 자른다
+	 2. 자른배열을 정렬한다.
+	 3. k번째 수를 반환할 배열에 담는다.
+	 */
 	public int[] solution(int []arr,int[][] commands) {
         int[] answer = new int[commands.length];
         int [] subArr;
@@ -60,7 +68,7 @@ public class Day201025_3 {
 			result[i]=arr[a-1];
 		return result;
 	}
-	
+		
 	
 	
 	//다른사람 풀이
@@ -74,13 +82,33 @@ public class Day201025_3 {
         return answer;
     }
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws NumberFormatException, IOException {
 		Day201025_3 d = new Day201025_3();
 		int []arr= {1,5,2,6,3,7,4};
 		int[][]commands= {{2,5,3},{4,4,1},{1,7,3}};
 		arr=d.solution(arr,commands);
-		for (int i = 0; i < arr.length; i++) {
-			System.out.println(arr[i]);
+//		for (int i = 0; i < arr.length; i++) {
+//			System.out.println(arr[i]);
+//		}
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String []s = {"ABC","DEF","GHI","JKL","MNO","PQRS","TUV","WXYZ"};
+		String str= br.readLine();
+		String []cut = str.split("");
+		int sum=0;
+		for (int i = 0; i < cut.length; i++) {
+			for (int j = 0; j < s.length; j++) {
+				if(s[j].contains(cut[i])) {
+					sum*=10;
+					sum+=(j+2);
+				}
+			}
 		}
+		int result=0;
+		while(sum>0) {
+			result+=sum%10+1;
+			sum/=10;
+		}
+		System.out.println(result);
 	}
 }
