@@ -1,5 +1,7 @@
 package algorithm;
 
+import java.util.ArrayList;
+
 /*
 ● 모의고사
 	문제 설명
@@ -22,14 +24,55 @@ package algorithm;
 public class Day201025_4 {
 
 	public int[] solution(int[] answers) {
-		//1번 수포자의 패턴
-        int[] a = { 1, 2, 3, 4, 5 };
-        //2번 수포자의 패턴
+		// 1번 수포자의 패턴
+		int[] a = { 1, 2, 3, 4, 5 };
+		// 2번 수포자의 패턴
 		int[] b = { 2, 1, 2, 3, 2, 4, 2, 5 };
-		//3번 수포자의 패턴
+		// 3번 수포자의 패턴
 		int[] c = { 3, 3, 1, 1, 2, 2, 4, 4, 5, 5 };
-		//각 수포자들의 맞춘 문제개수
-		int []cnt = new int[3];
+		// 각 수포자들의 맞춘 문제개수
+		int[] cnt = new int[3];
+		for (int i = 0; i < answers.length; i++) {
+			if (a[i % a.length] == answers[i])
+				cnt[0]++;
+			if (b[i % b.length] == answers[i])
+				cnt[1]++;
+			if (c[i % c.length] == answers[i])
+				cnt[2]++;
+		}
+
+		// 승리자 index
+		int winner = 0;
+		// 동점자
+		int tie = -1;
+		// 동점자 수
+		int win = 1;
+
+		for (int i = 1; i < cnt.length; i++) {
+			if (cnt[winner] < cnt[i]) {
+				winner = i;
+			} else if (cnt[winner] == cnt[i]) {
+				tie = i;
+				win++;
+			}
+		}
+
+		if (win == 1) {
+			int[] answer = { winner + 1 };
+			return answer;
+		} else if (win == 2) {
+			int[] answer = { winner + 1, tie + 1 };
+			return answer;
+		} else {
+			int[] answer = { 1, 2, 3 };
+			return answer;
+		}
+	}
+	public int[] solution3(int[] answers) {
+		int[] a = { 1, 2, 3, 4, 5 };
+		int[] b = { 2, 1, 2, 3, 2, 4, 2, 5 };
+		int[] c = { 3, 3, 1, 1, 2, 2, 4, 4, 5, 5 };
+		int[] cnt = new int[3];
 		for (int i = 0; i < answers.length; i++) {
 			if (a[i % a.length] == answers[i])
 				cnt[0]++;
@@ -39,40 +82,51 @@ public class Day201025_4 {
 				cnt[2]++;
 		}
 		
-		//승리자 index
-		int winner = 0;
-		//동점자
-		int tie= -1;
-		//동점자 수
-		int win = 1;
-		
-		for(int i=1;i<cnt.length;i++) {
-			if(cnt[winner]<cnt[i]) {
-				winner=i;
-			}else if(cnt[winner]==cnt[i]) {
-				tie=i;
-				win++;
-			}
+		int max=Math.max(cnt[0], Math.max(cnt[1], cnt[2]));
+		int winner =0;
+		for (int i = 0; i < cnt.length; i++) {
+			if(max==cnt[i]) winner++;
 		}
 		
-		if(win==1) {
-			int[] answer = {winner+1};
-			return answer;
-		}else if(win==2) {
-			int[]answer= {winner+1,tie+1};
-			return answer;
-		}else {
-			int[]answer= {1,2,3};
-			return answer;
+		int []answer=new int[winner];
+		int index=0;
+		for (int i = 0; i < cnt.length; i++) {
+			if(max==cnt[i]) answer[index]=i+1;
+			index++;
 		}
+		return answer;
 	}
-	
+
+	public int[] solution2(int[] answer) {
+		int[] a = { 1, 2, 3, 4, 5 };
+		int[] b = { 2, 1, 2, 3, 2, 4, 2, 5 };
+		int[] c = { 3, 3, 1, 1, 2, 2, 4, 4, 5, 5 };
+		int[] score = new int[3];
+		for (int i = 0; i < answer.length; i++) {
+			if (answer[i] == a[i % a.length])
+				score[0]++;
+			if (answer[i] == b[i % b.length])
+				score[1]++;
+			if (answer[i] == c[i % c.length])
+				score[2]++;
+		}
+		int maxScore = Math.max(score[0], Math.max(score[1], score[2]));
+		ArrayList<Integer> list = new ArrayList<>();
+		if (maxScore == score[0])
+			list.add(1);
+		if (maxScore == score[1])
+			list.add(2);
+		if (maxScore == score[2])
+			list.add(3);
+		return list.stream().mapToInt(i -> i.intValue()).toArray();
+	}
+
 	public static void main(String[] args) {
 		Day201025_4 d = new Day201025_4();
-		int[]arr = {1,3,2,4,2};
-		arr=d.solution(arr);
+		int[] arr = { 1, 3, 2, 4, 2 };
+		arr = d.solution3(arr);
 		for (int i = 0; i < arr.length; i++) {
-			System.out.printf("%s ",arr[i]);
+			System.out.printf("%s ", arr[i]);
 		}
 	}
 }
