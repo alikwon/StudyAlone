@@ -22,9 +22,13 @@ package algorithm;
 public class Day201025_4 {
 
 	public int[] solution(int[] answers) {
+		//1번 수포자의 패턴
         int[] a = { 1, 2, 3, 4, 5 };
+        //2번 수포자의 패턴
 		int[] b = { 2, 1, 2, 3, 2, 4, 2, 5 };
+		//3번 수포자의 패턴
 		int[] c = { 3, 3, 1, 1, 2, 2, 4, 4, 5, 5 };
+		//각 수포자들의 맞춘 문제개수
 		int []cnt = new int[3];
 		for (int i = 0; i < answers.length; i++) {
 			if (a[i % a.length] == answers[i])
@@ -34,9 +38,14 @@ public class Day201025_4 {
 			if (c[i % c.length] == answers[i])
 				cnt[2]++;
 		}
-		int win = 1;
-		int tie= -1;
+		
+		//승리자 index
 		int winner = 0;
+		//동점자
+		int tie= -1;
+		//동점자 수
+		int win = 1;
+		
 		for(int i=1;i<cnt.length;i++) {
 			if(cnt[winner]<cnt[i]) {
 				winner=i;
@@ -57,6 +66,7 @@ public class Day201025_4 {
 			return answer;
 		}
 	}
+	
 	public static void main(String[] args) {
 		Day201025_4 d = new Day201025_4();
 		int[]arr = {1,3,2,4,2};
