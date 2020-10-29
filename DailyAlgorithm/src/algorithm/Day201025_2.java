@@ -22,22 +22,23 @@ import java.util.ArrayList;
 */
 public class Day201025_2 {
 
-	public int[] solution(int []arr) {
-		int index=0;
-        int cnt=0;
-        for (int i = 1; i < arr.length; i++) {
-			if(arr[i-1]!=arr[i]) cnt++;
-        }
-        int[] answer = new int[cnt+1];
-        answer[index]=arr[0];
-        for (int i = 1; i < arr.length; i++) {
-			if(answer[index]!=arr[i]) {
+	public int[] solution(int[] arr) {
+		int index = 0;
+		int cnt = 0;
+		for (int i = 1; i < arr.length; i++) {
+			if (arr[i - 1] != arr[i])
+				cnt++;
+		}
+		int[] answer = new int[cnt + 1];
+		answer[0] = arr[0];
+		for (int i = 1; i < arr.length; i++) {
+			if (answer[index] != arr[i]) {
 				index++;
-				answer[index]=arr[i];
+				answer[index] = arr[i];
 			}
 		}
-        return answer;
-    }
+		return answer;
+	}
 	
 	
 	public int[] solution2(int []arr) {
@@ -71,7 +72,8 @@ public class Day201025_2 {
 		Day201025_2 d = new Day201025_2();
 		int []arr= {1,1,3,3,0,1,1};
 		Integer[]arr2=d.solution3(arr);
-		for (int i : arr2) {
+		arr=d.solution(arr);
+		for (int i : arr) {
 			System.out.print(i+" ");
 		}
 	}
