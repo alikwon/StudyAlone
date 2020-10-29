@@ -39,6 +39,7 @@ public class Day201025_2 {
         return answer;
     }
 	
+	
 	public int[] solution2(int []arr) {
 		ArrayList<Integer> list = new ArrayList<>();
 		list.add(arr[0]);
@@ -52,13 +53,25 @@ public class Day201025_2 {
 		}
 		return answer;
 	}
+	
+	public Integer[] solution3(int []arr) {
+		ArrayList<Integer> list = new ArrayList<>();
+		list.add(arr[0]);
+		for (int i = 1; i < arr.length; i++) {
+			if(arr[i-1]!=arr[i]) 
+				list.add(arr[i]);
+		}
+		Integer[]answer = (Integer[]) list.toArray(new Integer[list.size()]);
+//		int[] answer = list.stream().mapToInt(i->i).toArray();
+		return answer;
+	}
 
 
 	public static void main(String[] args) {
 		Day201025_2 d = new Day201025_2();
 		int []arr= {1,1,3,3,0,1,1};
-		arr=d.solution(arr);
-		for (int i : arr) {
+		Integer[]arr2=d.solution3(arr);
+		for (int i : arr2) {
 			System.out.print(i+" ");
 		}
 	}
