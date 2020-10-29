@@ -26,17 +26,15 @@ public class Day201022_1 {
 				answer+=" ";
 			}else{
 				if(ch>=65&&ch<=90)
-					if(ch+n>90) {
-						answer += ""+(char)(ch+n-26);
-					}
+					if(ch+n>90)
+						answer += (char)(ch+n-26);
 					else 
-						answer += ""+(char)(ch+n);
+						answer += (char)(ch+n);
 				else if(ch>=97&&ch<=122)
-					if(ch+n>122) {
-						answer += ""+(char)(ch+n-26);
-					}
+					if(ch+n>122)
+						answer += (char)(ch+n-26);
 					else 
-						answer += ""+(char)(ch+n);
+						answer += (char)(ch+n);
 			}
 		}
 		return answer;
