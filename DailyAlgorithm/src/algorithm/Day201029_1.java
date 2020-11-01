@@ -27,18 +27,45 @@ import java.util.List;
 */
 public class Day201029_1 {
 
+	public String solution3(int[]numbers) {
+		ArrayList<String>list=new ArrayList<String>();
+		for(int n:numbers) {
+			list.add(String.valueOf(n));
+		}
+		Collections.sort(list,new Comparator<String>() {
+			@Override
+			public int compare(String a, String b) {
+				return (b+a).compareTo(a+b);
+			}
+		});
+//		Collections.sort(list,(a,b)->{
+//			return (b+a).compareTo(a+b);
+//		});
+		
+		StringBuffer sb = new StringBuffer();
+		for(String s:list) {
+			sb.append(s);
+		}
+		if(sb.toString().charAt(0)=='0') return "0";
+		return sb.toString();
+	}
+	
+	
+	
 	public String solution(int[] numbers) {
 		String answer = "";
 		String[] arr = new String[numbers.length];
 		for (int i = 0; i < arr.length; i++) {
 			arr[i] = "" + numbers[i];
-//			arr[i]=String.valueOf(numbers[i]);
 		}
-		Arrays.sort(arr, new Comparator<String>() {
-			@Override
-			public int compare(String o1, String o2) {
-				return (o2 + o1).compareTo(o1 + o2);
-			}
+//		Arrays.sort(arr, new Comparator<String>() {
+//			@Override
+//			public int compare(String o1, String o2) {
+//				return (o2 + o1).compareTo(o1 + o2);
+//			}
+//		});
+		Arrays.sort(arr, (a,b)->{
+			return (b+a).compareTo(a+b);
 		});
 		for (int i = 0; i < arr.length; i++) {
 			answer += arr[i];
@@ -55,12 +82,20 @@ public class Day201029_1 {
 		for (int i = 0; i < numbers.length; i++) {
 			list.add(numbers[i]);
 		}
-		Collections.sort(list, (a, b) -> {
-			String as = String.valueOf(a), bs = String.valueOf(b);
-			return -Integer.compare(Integer.parseInt(as + bs), Integer.parseInt(bs + as));
+		Collections.sort(list,new Comparator<Integer>() {
+			@Override
+			public int compare(Integer o1, Integer o2) {
+				String a=""+o1;
+				String b=""+o2;
+				return Integer.compare(Integer.parseInt(b+a), Integer.parseInt(a+b));
+			}
 		});
-		
-		StringBuilder sb = new StringBuilder();
+//		Collections.sort(list,(x,y)->{
+//			int a= Integer.parseInt(""+y+x);
+//			int b= Integer.parseInt(""+x+y);
+//			return Integer.compare(a, b);
+//		});
+		StringBuffer sb = new StringBuffer();
 		for (Integer i : list) {
 			sb.append(i);
 		}
@@ -71,10 +106,10 @@ public class Day201029_1 {
 
 	public static void main(String[] args) {
 		Day201029_1 d = new Day201029_1();
-		int[] numbers1 = { 9, 3, 30, 34, 5 };
+		int[] numbers1 = { 3, 9, 30, 34, 5 };
 		int[] numbers2 = { 6, 10, 2 };
 		int[] numbers3 = { 0, 0, 0 };
-		System.out.println(d.solution2(numbers1));
+		System.out.println(d.solution3(numbers1));
 	}
 
 }
