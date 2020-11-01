@@ -29,8 +29,7 @@ public class Day201024_5 {
 				cnt++;
 		}
 		if(cnt==0) {
-			int[]result = {-1};
-			return result;
+			return new int[]{-1};
 		}
 		int index=0;
 		int[]result= new int[cnt];
@@ -48,6 +47,9 @@ public class Day201024_5 {
 		for (int i = 0; i < arr.length; i++) {
 			if(arr[i]%b==0) l.add(arr[i]);
 		}
+		if(l.size()==0) {
+			return new int[]{-1};
+		}
 		int[]result=new int[l.size()];
 		for (int i = 0; i < result.length; i++) {
 			result[i]=l.get(i);
@@ -62,8 +64,8 @@ public class Day201024_5 {
 	
 	public static void main(String[] args) {
 		Day201024_5 d = new Day201024_5();
-		int[]arr = {5,9,7,10};
-		arr=d.solution2(arr,5);
+		int[]arr = {5,7,10};
+		arr=d.solution2(arr,3);
 		for (int i = 0; i < arr.length; i++) {
 			System.out.print(arr[i]+" ");
 		}
