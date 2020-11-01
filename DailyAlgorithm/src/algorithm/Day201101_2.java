@@ -50,13 +50,23 @@ public class Day201101_2 {
 		boolean usedHand; // 왼손=true,오른손=false
 		for (int n:numbers) {
 			usedHand=true;// 기본 왼손
-			switch (n) {
-			case 1: case 4: case 7:
-				break;
-			case 3: case 6: case 9:
-				usedHand=false;
-				break;
-			default:
+//			switch (n) {
+//			case 1: case 4: case 7:
+//				break;
+//			case 3: case 6: case 9:
+//				usedHand=false;
+//				break;
+//			default:
+//				leftDis=calcDis(map, left, n);
+//				rightDis=calcDis(map, right, n);
+//				if(leftDis==rightDis) {
+//					usedHand=hand.equals("left")?true:false;
+//				}else if(leftDis>rightDis) {
+//					usedHand=false;
+//				}
+//				break;
+//			}
+			if(n%3==2||n==0) {	// 2,5,8,0
 				leftDis=calcDis(map, left, n);
 				rightDis=calcDis(map, right, n);
 				if(leftDis==rightDis) {
@@ -64,8 +74,10 @@ public class Day201101_2 {
 				}else if(leftDis>rightDis) {
 					usedHand=false;
 				}
-				break;
+			}else if(n%3==0) {	// 3,6,9
+				usedHand=false;
 			}
+			
 			if(usedHand) {
 				left=""+n;
 			}else {
