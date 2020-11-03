@@ -37,26 +37,39 @@ public class Day201101_2 {
 
 	public String solution(int[] numbers, String hand) {
 		Map<String, int[]> map = new HashMap<>(); // 좌표를 위한 맵
-		map.put("1", new int[]{0,0}); map.put("2", new int[]{1,0}); map.put("3", new int[]{2,0});
-		map.put("4", new int[]{0,1}); map.put("5", new int[]{1,1}); map.put("6", new int[]{2,1});
-		map.put("7", new int[]{0,2}); map.put("8", new int[]{1,2}); map.put("9", new int[]{2,2});
-		map.put("*", new int[]{0,3}); map.put("0", new int[]{1,3}); map.put("#", new int[]{2,3});
-		
-		String answer = "";
-		String left="*";	//왼손 처음위치
-		String right="#";	//오른손 처음위치
-		int leftDis,rightDis;
-		
+		map.put("1", new int[] { 0, 0 }); map.put("2", new int[] { 1, 0 }); map.put("3", new int[] { 2, 0 });
+		map.put("4", new int[] { 0, 1 }); map.put("5", new int[] { 1, 1 }); map.put("6", new int[] { 2, 1 });
+		map.put("7", new int[] { 0, 2 }); map.put("8", new int[] { 1, 2 }); map.put("9", new int[] { 2, 2 });
+		map.put("*", new int[] { 0, 3 }); map.put("0", new int[] { 1, 3 }); map.put("#", new int[] { 2, 3 });
+
+		StringBuffer sb = new StringBuffer();
+		String left = "*"; // 왼손 처음위치
+		String right = "#"; // 오른손 처음위치
+		int leftDis, rightDis;
+
 		boolean usedHand; // 왼손=true,오른손=false
-		for (int n:numbers) {
-			usedHand=true;// 기본 왼손
-//			switch (n) {
-//			case 1: case 4: case 7:
-//				break;
-//			case 3: case 6: case 9:
-//				usedHand=false;
-//				break;
-//			default:
+		for (int n : numbers) {
+			usedHand = true;// 기본 왼손
+			switch (n) {
+			case 2:
+			case 5:
+			case 8:
+			case 0:
+				leftDis = calcDis(map, left, n);
+				rightDis = calcDis(map, right, n);
+				if (leftDis == rightDis) {
+					usedHand = hand.equals("left") ? true : false;
+				} else if (leftDis > rightDis) {
+					usedHand = false;
+				}
+				break;
+			case 3:
+			case 6:
+			case 9:
+				usedHand = false;
+				break;
+			}
+//			if(n%3==2||n==0) {	// 2,5,8,0
 //				leftDis=calcDis(map, left, n);
 //				rightDis=calcDis(map, right, n);
 //				if(leftDis==rightDis) {
@@ -64,36 +77,70 @@ public class Day201101_2 {
 //				}else if(leftDis>rightDis) {
 //					usedHand=false;
 //				}
-//				break;
+//			}else if(n%3==0) {	// 3,6,9
+//				usedHand=false;
 //			}
-			if(n%3==2||n==0) {	// 2,5,8,0
-				leftDis=calcDis(map, left, n);
-				rightDis=calcDis(map, right, n);
-				if(leftDis==rightDis) {
-					usedHand=hand.equals("left")?true:false;
-				}else if(leftDis>rightDis) {
-					usedHand=false;
-				}
-			}else if(n%3==0) {	// 3,6,9
-				usedHand=false;
+
+			if (usedHand) {
+				left = "" + n;
+			} else {
+				right = "" + n;
 			}
-			
-			if(usedHand) {
-				left=""+n;
-			}else {
-				right=""+n;
-			}
-			answer+=usedHand?"L":"R";
-			System.out.println();
+			sb.append(usedHand ? "L" : "R");
 		}
-		return answer;
+		return sb.toString();
 	}
 
-	private int calcDis(Map<String, int[]> map,String pos, int num) {
+	private int calcDis(Map<String, int[]> map, String pos, int num) {
 		String n = "" + num;
 		int a = Math.abs(map.get(pos)[0] - map.get(n)[0]);
 		int b = Math.abs(map.get(pos)[1] - map.get(n)[1]);
 		return a + b;
+	}
+
+	
+	//다른사람 풀이
+	int tempL = 10;
+	int tempR = 12;
+	String myhand;
+
+	public String solution2(int[] numbers, String hand) {
+		myhand = ((hand.equals("right")) ? "R" : "L");
+		String answer = "";
+		for (int i = 0; i < numbers.length; i++) {
+			switch (numbers[i]) {
+			case 1: case 4: case 7:
+				answer += "L";
+				tempL = numbers[i];
+				break;
+			case 3: case 6: case 9:
+				answer += "R";
+				tempR = numbers[i];
+				break;
+			default:
+				String tempHand = checkHand(numbers[i]);
+				if (tempHand.equals("R"))
+					tempR = numbers[i] + ((numbers[i] == 0) ? 11 : 0);
+				else
+					tempL = numbers[i] + ((numbers[i] == 0) ? 11 : 0);
+				answer += tempHand;
+				break;
+			}
+		}
+		return answer;
+	}
+
+	private String checkHand(int tempNum) {
+		int leftDistance = 0;
+		int rightDistance = 0;
+		if (tempNum == 0)
+			tempNum = 11;
+
+		leftDistance = Math.abs((tempNum - 1) / 3 - (tempL - 1) / 3) + Math.abs((tempNum - 1) % 3 - (tempL - 1) % 3);
+		rightDistance = Math.abs((tempNum - 1) / 3 - (tempR - 1) / 3) + Math.abs((tempNum - 1) % 3 - (tempR - 1) % 3);
+		System.out.println(tempNum + ": " + leftDistance + ", " + rightDistance);
+		return ((leftDistance == rightDistance) ? myhand : (leftDistance > rightDistance) ? "R" : "L");
+
 	}
 
 	public static void main(String[] args) {
@@ -103,8 +150,8 @@ public class Day201101_2 {
 		int[] numbers3 = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 };
 		String hand1 = "right";
 		String hand2 = "left";
-		
-		//LRLLLRLLRRL
+
+		// LRLLLRLLRRL
 		System.out.println(d.solution(numbers1, hand1));
 	}
 }
