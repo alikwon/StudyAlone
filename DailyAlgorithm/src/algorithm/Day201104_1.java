@@ -29,11 +29,11 @@ import java.util.Iterator;
 		- skill_trees의 원소는 길이가 2 이상 26 이하인 문자열이며, 스킬이 중복해 주어지지 않습니다.
 */
 public class Day201104_1 {
-	
+
 	public int solution(String skill, String[] trees) {
 //		List<String>list2= Arrays.asList(tmp); //java.util.Arrays.ArrayList
 		int answer = 0;
-		for (String tree: trees) {
+		for (String tree : trees) {
 			int cont = 0;
 			int chk = 0;
 			for (int j = 0; j < tree.length(); j++) {
@@ -42,7 +42,7 @@ public class Day201104_1 {
 				if (idx == -1) {
 					chk++;
 				}
-				
+
 				if (cont == idx) {
 					cont++;
 				} else if (cont < idx) {
@@ -72,10 +72,19 @@ public class Day201104_1 {
 		return answer;
 	}
 
+	public int solution2_2(String skill, String[] trees) {
+		int answer = 0;
+		for (String s : trees) {
+			if (skill.indexOf(s.replaceAll("[^" + skill + "]", "")) == 0)
+				answer++;
+		}
+		return answer;
+	}
+
 	public int solution3(String skill, String[] trees) {
 		int answer = 0;
 		StringBuffer sb = new StringBuffer();
-		String[] arr;
+		String[] arr = null;
 		for (String s : trees) {
 			arr = s.split("");
 			sb.delete(0, sb.length());
@@ -83,8 +92,7 @@ public class Day201104_1 {
 				if (skill.indexOf(arr[j]) != -1)
 					sb.append(arr[j]);
 			}
-			int idx = skill.indexOf(sb.toString());
-			if (idx == 0) {
+			if (skill.indexOf(sb.toString()) == 0) {
 				answer++;
 			}
 		}
