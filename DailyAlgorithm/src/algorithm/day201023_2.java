@@ -18,6 +18,7 @@ package algorithm;
 		    사전순으로 앞선 문자열이 앞쪽에 위치합니다.
 */
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class Day201023_2 {
 
@@ -31,14 +32,25 @@ public class Day201023_2 {
 		}
 		return s;
 	}
+	
+	public String[] solution2(String[] s, int n) {
+		Arrays.sort(s,new Comparator<String>() {
+			@Override
+			public int compare(String a, String b) {
+				return a.substring(n).compareTo(b.substring(n));
+			}
+		});
+		return s;
+	}
 
+	
 	public static void main(String[] args) {
 		Day201023_2 o = new Day201023_2();
 		String [] s = {"sun","bed","car"};
 		String [] s2 = {"abce","abcd","cdx"};
 		int n = 1;
 		int n2 = 2;
-		String []arr = o.solution(s2, n2);
+		String []arr = o.solution2(s2, n2);
 		for (int i = 0; i < arr.length; i++) {
 			System.out.printf("%s ",arr[i]);
 		}
