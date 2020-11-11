@@ -77,9 +77,6 @@ public class Day201111_2 {
 			}
 		}
 		for (int i = 0; i < d.length; i++) {
-			System.out.print(d[i]+" ");
-		}
-		for (int i = 0; i < d.length; i++) {
 			budget-=d[i];
 			if(budget<0) {
 				return answer;
