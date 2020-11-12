@@ -32,27 +32,46 @@ public class Day201023_2 {
 		}
 		return s;
 	}
-	
+
 	public String[] solution2(String[] s, int n) {
-		Arrays.sort(s,new Comparator<String>() {
+		Arrays.sort(s, new Comparator<String>() {
 			@Override
 			public int compare(String a, String b) {
-				return a.substring(n).compareTo(b.substring(n));
+				char x = a.charAt(n);
+				char y = b.charAt(n);
+				return x == y ? a.compareTo(b) : Integer.compare(x, y);
 			}
 		});
 		return s;
 	}
 
-	
+	public String[] solution3(String[] strings, int n) {
+		Arrays.sort(strings, new Comparator<String>() {
+			@Override
+			public int compare(String o1, String o2) {
+				char c1 = o1.charAt(n);
+				char c2 = o2.charAt(n);
+
+				if (c1 > c2)
+					return 1;
+				else if (c1 == c2)
+					return o1.compareTo(o2);
+				else
+					return -1;
+			}
+		});
+		return strings;
+	}
+
 	public static void main(String[] args) {
 		Day201023_2 o = new Day201023_2();
-		String [] s = {"sun","bed","car"};
-		String [] s2 = {"abce","abcd","cdx"};
+		String[] s = { "sun", "bed", "car" };
+		String[] s2 = { "abce", "abcd", "cdx" };
 		int n = 1;
 		int n2 = 2;
-		String []arr = o.solution2(s2, n2);
+		String[] arr = o.solution2(s2, n2);
 		for (int i = 0; i < arr.length; i++) {
-			System.out.printf("%s ",arr[i]);
+			System.out.printf("%s ", arr[i]);
 		}
 	}
 }
