@@ -17,31 +17,32 @@ import java.util.Arrays;
 		- a와 b의 대소관계는 정해져있지 않습니다.
 */
 public class Day201024_4 {
-	
-	//for문
+
+	// for문
 	public long solution(int a, int b) {
-        long sum = 0;
-        if(a==b)return sum;
-        for(int i =a<b?a:b;i<=(a<b?b:a);i++)
-        	sum+=i;
-        return sum;
-    }
-	
-	//등차수열공식 이용
-	//(n-m+1)(m+n)/2
-	//https://shcoachstorage.s3.amazonaws.com/media/timeline/post/2018/4/20/post_img_61b0b1a9275b4303aa2c002e62452013.png
-	//훨씬 빠름...
-	public long solution2(int a, int b) {
-		if(a==b) return 0;
-		return a<b?sum(a,b):sum(b,a);
+		long sum = 0;
+		int big = a > b ? a : b;
+		int small = big == a ? b : a;
+		for (int i = small; i <= big; i++)
+			sum += i;
+		return sum;
 	}
-	private long sum(long a,long b) {
-		return (b-a+1)*(a+b)/2;
+
+	// 등차수열공식 이용
+	// (n-m+1)(m+n)/2
+	// https://shcoachstorage.s3.amazonaws.com/media/timeline/post/2018/4/20/post_img_61b0b1a9275b4303aa2c002e62452013.png
+	// 훨씬 빠름...
+	public long solution2(int a, int b) {
+		return a < b ? sum(a, b) : sum(b, a);
+	}
+
+	private long sum(long a, long b) {
+		return (b - a + 1) * (a + b) / 2;
 	}
 
 	public static void main(String[] args) {
 		Day201024_4 d = new Day201024_4();
-		System.out.println(d.solution(3,5));
+		System.out.println(d.solution(3, 5));
 	}
 
 }
