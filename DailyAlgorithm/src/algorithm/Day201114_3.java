@@ -35,18 +35,24 @@ public class Day201114_3 {
 
 	public int solution(String[][] clothes) {
 		int answer = 1;
+		//카테고리별(key)로 의상의 개수(value)를 담을 map
 		Map<String, Integer> map = new HashMap<>();
 		for (int i = 0; i < clothes.length; i++) {
 			String c = clothes[i][1];
 			if (map.containsKey(c)) {
+				//카테고리가 있으면 기존 value를 +1해준다
 				map.put(c, map.get(c) + 1);
 			} else {
+				//카테고리가 없으면 카테고리 생성 후 value에 1을 넣는다
 				map.put(c, 1);
 			}
 		}
+		
 		for (String key : map.keySet()) {
 			answer *= map.get(key) + 1;
 		}
+		
+		//모두 벗고 있는 경우는 제외하고 반환
 		return answer - 1;
 	}
 
