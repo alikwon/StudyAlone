@@ -1,7 +1,5 @@
 package algorithm;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -22,7 +20,6 @@ import java.util.TreeSet;
 	
 */
 public class Day201116_1 {
-	ArrayList<String>list = new ArrayList<String>();
 	public int solution(String num) {
 		Set<Integer> set = new TreeSet<>();
 		int answer = 0;
@@ -44,8 +41,8 @@ public class Day201116_1 {
 			for (int i = 0; i < r; i++) {
 				sb.append(s[i]);
 			}
-			System.out.println("sb:" + sb.toString());
-			System.out.println();
+//			System.out.println("sb:" + sb.toString());
+//			System.out.println();
 			set.add(Integer.parseInt(sb.toString()));
 			return;
 		}
@@ -54,8 +51,8 @@ public class Day201116_1 {
 			String tmp = s[depth];
 			s[depth] = s[i];
 			s[i] = tmp;
-			System.out.print(depth+": ");
-			System.out.println(Arrays.toString(s));
+//			System.out.print(depth+": ");
+//			System.out.println(Arrays.toString(s));
 			permutation(s, depth + 1, r, set);
 
 			// 스왑한거 다시 되돌리기
