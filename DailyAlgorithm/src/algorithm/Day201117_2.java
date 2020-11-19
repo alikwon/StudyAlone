@@ -18,7 +18,7 @@ package algorithm;
 public class Day201117_2 {
 
 	public String solution(String s) {
-		String answer = "";
+		StringBuilder sb = new StringBuilder();
 		// 공백을 기준으로 배열만듦
 		String[] arr = s.split(" ");
 		//a와 b에 배열제일 처음 값을 넣어줌
@@ -31,8 +31,7 @@ public class Day201117_2 {
 			if (a > n) a = n;
 			if (b < n) b = n;
 		}
-		answer = a + " " + b;
-		return answer;
+		return sb.append(a).append(" ").append(b).toString();
 	}
 
 	public static void main(String[] args) {
