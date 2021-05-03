@@ -26,4 +26,5 @@
 	</bean>
 	
 	<mybatis-spring:scan base-package="org.alikwon.mapper"/>
+	<context:component-scan base-package="org.alikwon.service"></context:component-scan>
 </beans>
