@@ -25,7 +25,10 @@ public class Day201022_4 {
         }
         return Integer.parseInt(s);
     }
+	public static int solution2(String s) {
+		return Integer.parseInt(s);
+	}
 	public static void main(String[] args) {
-		System.out.println(solution("1234"));;
+		System.out.println(solution2("1234"));;
 	}
 }
