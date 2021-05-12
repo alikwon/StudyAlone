@@ -29,11 +29,44 @@ public class MemberTests {
 	@Setter
 	private DataSource ds;
 	
+//	@Test
+//	public void testInsertAuth() {
+//		String sql = "INSERT INTO tbl_member_auth (userid,auth) values (?,?)";
+//		
+//			Connection con = null;
+//			PreparedStatement pstmt = null;
+//			
+//			try {
+//				con = ds.getConnection();
+//				pstmt = con.prepareStatement(sql);
+//				
+//					pstmt.setString(1, "admin");
+//					pstmt.setString(2, "ROLE_ADMIN");
+//				
+//				pstmt.executeUpdate();
+//			} catch (Exception e) {
+//				// TODO: handle exception
+//			}finally {
+//				if(pstmt!=null) {
+//					try {
+//						pstmt.close();
+//					} catch (Exception e) {
+//						// TODO: handle exception
+//					}
+//				}
+//				if(con!=null) {
+//					try {
+//						con.close();
+//					} catch (Exception e) {
+//						// TODO: handle exception
+//					}
+//				}
+//			}
+//	}
 	@Test
-	public void testInsertAuth() {
-		String sql = "INSERT INTO tbl_member_auth (userid,auth) values (?,?)";
+	public void testInsertMember() {
+		String sql = "INSERT INTO tbl_member (userid,userpw,username) values (?,?,?)";
 		
-		for (int i = 0; i < 100; i++) {
 			Connection con = null;
 			PreparedStatement pstmt = null;
 			
@@ -41,16 +74,10 @@ public class MemberTests {
 				con = ds.getConnection();
 				pstmt = con.prepareStatement(sql);
 				
-				if(i<80) {
-					pstmt.setString(1, "user"+i);
-					pstmt.setString(2, "ROLE_USER");
-				}else if(i<90) {
-					pstmt.setString(1, "manager"+i);
-					pstmt.setString(2, "ROLE_MEMBER");
-				}else{
-					pstmt.setString(1, "admin"+i);
-					pstmt.setString(2, "ROLE_ADMIN");
-				}
+				pstmt.setString(2, pwencoder.encode("incom123#@!"));
+				
+					pstmt.setString(1, "b크립트확인용더미2");
+					pstmt.setString(3, "일");
 				
 				pstmt.executeUpdate();
 			} catch (Exception e) {
@@ -71,8 +98,52 @@ public class MemberTests {
 					}
 				}
 			}
-		}//end for
 	}
+//	@Test
+//	public void testInsertAuth() {
+//		String sql = "INSERT INTO tbl_member_auth (userid,auth) values (?,?)";
+//		
+//		for (int i = 0; i < 100; i++) {
+//			Connection con = null;
+//			PreparedStatement pstmt = null;
+//			
+//			try {
+//				con = ds.getConnection();
+//				pstmt = con.prepareStatement(sql);
+//				
+//				if(i<80) {
+//					pstmt.setString(1, "user"+i);
+//					pstmt.setString(2, "ROLE_USER");
+//				}else if(i<90) {
+//					pstmt.setString(1, "manager"+i);
+//					pstmt.setString(2, "ROLE_MEMBER");
+//				}else{
+//					pstmt.setString(1, "admin"+i);
+//					pstmt.setString(2, "ROLE_ADMIN");
+//				}
+//				
+//				pstmt.executeUpdate();
+//			} catch (Exception e) {
+//				// TODO: handle exception
+//			}finally {
+//				if(pstmt!=null) {
+//					try {
+//						pstmt.close();
+//					} catch (Exception e) {
+//						// TODO: handle exception
+//					}
+//				}
+//				if(con!=null) {
+//					try {
+//						con.close();
+//					} catch (Exception e) {
+//						// TODO: handle exception
+//					}
+//				}
+//			}
+//		}//end for
+//	}
+	
 	
 	
 //	@Test
