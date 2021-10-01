@@ -45,6 +45,7 @@ public class Day211001_4 {
 				if (words[j].equals(sb.toString())) {
 					answer.append(j);
 					sb.delete(0, sb.length());
+					break;
 				}
 			}
 		}
