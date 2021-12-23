@@ -37,14 +37,14 @@ console.log(travel);
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 
 function workOut() {
+    goToGym();
     var goToGym = function(){
         console.log('Workout in Gym AAA');
     }
-    goToGym();
+    return;
     function goToGym(){
         console.log('Workout in Gym BBB');
     }
-    return;
 }
 workOut();
 
