@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+    </head>
+    <body>
+        <div id="app">
+            <ul>
+                <li v-for="message in messages">
+                    {{message.text}} - {{message.createdAt}}
+                </li>
+            </ul>
+            <form @submit.prevent = "addMessage">
+                <textarea v-model="newMassage" placeholder="Leave a message">
+                </textarea>
+                <div>
+                    <button type="submit">Add</button>
+                </div>
+            </form>
+        </div>
+
+        <script src="https://unpkg.com/vue@2.5.13/dist/vue.js"></script>
+        <script>
+            let vm = new Vue({
+                el: "#app", // id="app" 요소에 부착
+                data: {
+                    messages: [],
+                    newMassage: "",
+                },
+                methods: {
+                    
+                },
+                // data(){
+                //     return {
+                //         message: [],
+                //         newMassage: ''
+                //     }
+                // }
+            });
+        </script>
+    </body>
+</html>
