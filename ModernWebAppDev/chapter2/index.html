@@ -5,7 +5,7 @@
         <style>
             [v-clock] {display: none;}
 
-            body > div { width: 500px; margin: 0 auto; }
+            body > div { width: 600px; margin: 0 auto; }
             textarea{ width: 100%; }
         </style>
     </head>
@@ -19,7 +19,7 @@
                 </li>
             </ul> -->
             <form @submit.prevent="addMessage">
-                <textarea v-model="newMassage" placeholder="Leave a message">
+                <textarea v-focus v-model="newMassage" placeholder="Leave a message">
                 </textarea>
                 <div>
                     <button type="submit" v-bind:disabled="addDisabled">Add</button>
@@ -29,7 +29,17 @@
 
         <script src="https://unpkg.com/vue@2.5.13/dist/vue.js"></script>
         <script type="module">
-            import MessageList from './MessageList.js'
+            import MessageList from '/chapter2/chapter2-2.component/MessageList.js';    // 컴포넌트
+
+            import '/chapter2/chapter2-4.directive/directive.js';                       // 지시자
+
+            import '/chapter2/chapter2-5.filter/datetime.filter.js';                    // 필터
+
+            // import lifecycleLogger from '/chapter2/chapter2-6.mixins/lifecycle-logger.mixin.js'; // 믹스인
+
+            import lifecycleLogger from '/chapter2/chapter2-7.plugin/lifecycle-logger.plugin.js'; // 플러그인
+            Vue.use(lifecycleLogger,{beforeMount:false});   // 두번째 인자로 훅추적 비활성화 가능
+
             let vm = new Vue({
                 el: "#app",
                 components:{
@@ -58,7 +68,8 @@
                 },
                 computed: {
                     addDisabled: function () {
-                        return this.messages.length >= 10 || this.newMassage.length > 50;
+                        let a = this.messages.length >= 10 || this.newMassage.length > 50;
+                        return a;
                     }
                 },
             });
