@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <style>
+            [v-clock] {display: none;}
+
+            body > div { width: 500px; margin: 0 auto; }
+            textarea{ width: 100%; }
+        </style>
+    </head>
+    <body>
+        <div id="app" v-cloak>
+            <message-list :items="messages" @delete="deleteMessage"></message-list>
+            <!-- <ul>
+                <li v-for="message in messages">
+                    {{message.text}} - {{message.createdAt}}
+                    <button @click="deleteMessage(message)">X</button>
+                </li>
+            </ul> -->
+            <form @submit.prevent="addMessage">
+                <textarea v-model="newMassage" placeholder="Leave a message">
+                </textarea>
+                <div>
+                    <button type="submit" v-bind:disabled="addDisabled">Add</button>
+                </div>
+            </form>
+        </div>
+
+        <script src="https://unpkg.com/vue@2.5.13/dist/vue.js"></script>
+        <script type="module">
+            import MessageList from './MessageList.js'
+            let vm = new Vue({
+                el: "#app",
+                components:{
+                    MessageList,
+                },
+                data: {
+                    messages: [],
+                    newMassage: "",
+                },
+                methods: {
+                    addMessage: function (event) {
+                        if (!this.newMassage) {
+                            return false;
+                        }
+                        let now = new Date();
+                        this.messages.push({
+                            id: now.getTime(),
+                            text: this.newMassage,
+                            createdAt: now,
+                        });
+                        this.newMassage = "";
+                    },
+                    deleteMessage: function (message) {
+                        this.messages.splice(this.messages.indexOf(message), 1);
+                    },
+                },
+                computed: {
+                    addDisabled: function () {
+                        return this.messages.length >= 10 || this.newMassage.length > 50;
+                    }
+                },
+            });
+        </script>
+    </body>
+</html>

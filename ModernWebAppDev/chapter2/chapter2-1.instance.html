@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <style>
+            /* 템플릿 마크업 숨기기 */
+            [v-clock] {display: none;}
+
+            body > div { width: 500px; margin: 0 auto; }
+            textarea{ width: 100%; }
+        </style>
+    </head>
+    <body>
+        <div id="app" v-cloak>
+            <ul>
+                <li v-for="message in messages">
+                    {{message.text}} - {{message.createdAt}}
+                    <button @click="deleteMessage(message)">X</button>
+                </li>
+            </ul>
+            <!-- prevent = evenv.preventDefault() -->
+            <form @submit.prevent="addMessage">
+                <textarea v-model="newMassage" placeholder="Leave a message">
+                </textarea>
+                <div>
+                    <button type="submit" v-bind:disabled="addDisabled">Add</button>
+                </div>
+            </form>
+        </div>
+
+        <script src="https://unpkg.com/vue@2.5.13/dist/vue.js"></script>
+        <script>
+            let vm = new Vue({
+                el: "#app", // id="app" 요소에 부착
+                data: {
+                    messages: [],
+                    newMassage: "",
+                },
+                methods: {
+                    addMessage: function (event) {
+                        if (!this.newMassage) {
+                            return false;
+                        }
+                        this.messages.push({
+                            text: this.newMassage,
+                            createdAt: new Date(),
+                        });
+                        this.newMassage = "";
+                    },
+                    deleteMessage: function (message) {
+                        this.messages.splice(this.messages.indexOf(message), 1);
+                    },
+                },
+                computed: {
+                    addDisabled: function () {
+                        // 조건의 관리를 용이하게 하기위해 computed 프로퍼티를 사용함 --> 계산된 값
+                        // Vue는 computed 프로퍼티에 종속된 대상으 ㄹ추적하고 종속된 대상이 변경될 때
+                        // 프로퍼티 값을 업데이트함
+                        return this.messages.length >= 10 || this.newMassage.length > 50;
+                    }
+                },
+            });
+        </script>
+    </body>
+</html>
