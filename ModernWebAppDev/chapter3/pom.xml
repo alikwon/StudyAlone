@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>app.sample</groupId>
+	<artifactId>messages</artifactId>
+	<version>1.0-SNAPSHOT</version>
+
+	<properties>
+		<spring.version>5.0.3.RELEASE</spring.version>
+		<log4j.version>2.10.0</log4j.version>
+	</properties>
+
+
+	<!-- 스프링 부트 의존성 추가 - 시작 -->
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.0.0.RELEASE</version>
+	</parent>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+	<!-- 스프링 부트 의존성 추가 - 끝  -> maven install -->
+		<!-- maraidb 디펜던시 추가 -->
+		<dependency>
+			<groupId>org.mariadb.jdbc</groupId>
+			<artifactId>mariadb-java-client</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency>
+		
+		<!-- Hibernate 디펜던시 추가 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+		</dependency>
+		<!-- Hibernate 디펜던시 추가 -->
+	</dependencies>
+	
+	
+	<!-- 
+		- 기본적으로는 메이븐 플러그인인 maven-assembly-plugin을 빌드 프로세스에 추가한다.
+		- mainClass 태그에서 main 클래스인 Application.java를 추가한다.
+		- 명령줄에서 .jar 파일을 실행하려면 애플리케이션의 의존성으로 
+		  spring-context-5.0.3.RELEASE.jar 파일을 .jar 파일에 포함시켜야한다
+		  -> 이를 위해 <descriptorRef>를 추가햇따. 
+	 -->
+	<build>
+		<finalName>messages</finalName>
+		<plugins>
+			<!--
+				스프링부트 의존성 추가 후 필요없음 
+				<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<archiveBaseDirectory>${project.basedir}</archiveBaseDirectory>
+							<archive>
+								<manifest>
+								
+									<mainClass>app.messages.Application</mainClass>
+								</manifest>
+							</archive>
+							<descriptorRefs>
+								<descriptorRef>jar-with-dependencies</descriptorRef>
+							</descriptorRefs>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin> -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

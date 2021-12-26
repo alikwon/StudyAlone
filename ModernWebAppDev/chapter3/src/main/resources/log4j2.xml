@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Log4j 설정에 대해 자세히 알고 싶다면..
+	https://logging.apache.org/log4j/2.x/manual/configuration.html
+ -->
+<Configuration status="WARN">
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+		</Console>
+	</Appenders>
+	<Loggers>
+		<Logger name="app.messages" level ="INFO">
+			<AppenderRef ref="Console"/>
+		</Logger>
+		<Root level="ERROR"/>
+	</Loggers>
+</Configuration>
