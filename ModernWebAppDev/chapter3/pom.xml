@@ -51,6 +51,11 @@
 			<artifactId>hibernate-core</artifactId>
 		</dependency>
 		<!-- Hibernate 디펜던시 추가 -->
+		<!-- aop 디펜던시 추가 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
 	</dependencies>
 	
 	
