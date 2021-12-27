@@ -1,4 +1,4 @@
-package app.messages;
+package app.messages.repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,6 +18,8 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceUtils;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Component;
+
+import app.messages.model.Message;
 
 
 @Component

@@ -1,4 +1,4 @@
-package app.messages;
+package app.messages.config;
 
 import java.util.Arrays;
 
@@ -8,15 +8,22 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+import app.messages.web.AuditingFilter;
 
 /*
 	- @Configuration : AppConfig.java 파일이 빈을 정의하기 위한 것임을 스프링에게 알려줌
 	- @ComponentScan : 어노테이션이 달린 컴포넌트를 스캔할 기본 패키지를 스프링에 알려줌
 	- @Bean : Bean을 생성하는 역할. 메소드의 이름이 빈의 이름이 됨. 
+	
+	- @EnableTransactionManagement : @Transactional 어노테이션을 찾아 트랜잭션 범위를 활성화하는 기능
  */
 @Configuration
 @ComponentScan("app.messages")
+@EnableTransactionManagement
 public class AppConfig {
     
 	
@@ -72,5 +79,13 @@ public class AppConfig {
 		//setPackagesToScan() : 하이버네이트가 인티티 클래스를 찾기위해 검색할 패키지 지정
 		sessionFactoryBean.setPackagesToScan("app.messages");
 		return sessionFactoryBean;
+	}
+	
+	//트랜젝션 관리 추가
+	@Bean
+	public HibernateTransactionManager transactionManager() {
+		HibernateTransactionManager transactionManager = new HibernateTransactionManager();
+		transactionManager.setSessionFactory(sessionFactory().getObject());
+		return transactionManager;
 	}
 }

@@ -1,16 +1,20 @@
-package app.messages;
+package app.messages.web;
+
+import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import app.messages.model.Message;
+import app.messages.service.MessageService;
+
 @Controller
-@RequestMapping("/messages")
+//@RequestMapping("/messages")
 public class MessageController {
 
 //	@RequestMapping(value = "/welcome", method = RequestMethod.GET)
@@ -30,7 +34,12 @@ public class MessageController {
 		this.messageService = messageService;
 	}
 
-	@GetMapping("/welcome")
+	@GetMapping("/messages")
+	public String index2() {
+		return "index";
+	}
+
+	@GetMapping("/messages/welcome")
 	@ResponseBody
 	public ModelAndView welcome() {
 		ModelAndView mv = new ModelAndView("welcome");
@@ -38,14 +47,21 @@ public class MessageController {
 		return mv;
 	}
 
-	@PostMapping("")
+	@GetMapping("/api/messages")
 	@ResponseBody
-	public ResponseEntity<Message> saveMessage(@RequestBody MessageData data){
+	public ResponseEntity<List<Message>> getMessages() {
+		List<Message> messages = messageService.getMessages();
+		return ResponseEntity.ok(messages);
+	}
+
+	@PostMapping("/api/messages")
+	@ResponseBody
+	public ResponseEntity<Message> saveMessage(@RequestBody MessageData data) {
 		// ResponseEntity 는 응답상태, 본문과 헤더를 설정할 수 있게 허용한다
 		// @RequestBody : HTTP 요청 본문에 전달된 JSON 형식의 string을 MessageData 인스턴스로 변환
-		
+
 		Message saved = messageService.save(data.getText());
-		if(saved == null) {
+		if (saved == null) {
 			return ResponseEntity.status(500).build();
 		}
 		return ResponseEntity.ok(saved);
