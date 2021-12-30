@@ -43,6 +43,9 @@ public class Message {
 		this.text = text;
 		this.createdDate = new Date();
 	}
+	public Message(Integer id) {
+		this.id = id;
+	}
 	public Integer getId() {
 		return id;
 	}

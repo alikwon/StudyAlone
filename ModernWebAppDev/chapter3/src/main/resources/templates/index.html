@@ -78,8 +78,14 @@
             });
         },
         deleteMessage(message) {
-          this.messages.splice(this.messages.indexOf(message), 1)
-        }
+          axios.post('/api/messages/delete', { id: message.id })
+            .then((response) => {
+              this.messages.splice(this.messages.indexOf(message), 1);
+            })
+            .catch((error) => {
+              console.log(error);
+            })
+        },
       }
     })
   </script>

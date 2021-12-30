@@ -56,4 +56,10 @@ public class MessageService {
 	public List<Message> getMessages() {
 		return repository.getMessages();
 	}
+
+	@Transactional
+	public int delete(int id) {
+		repository.deleteMessage(new Message(id));
+		return 0;
+	}
 }

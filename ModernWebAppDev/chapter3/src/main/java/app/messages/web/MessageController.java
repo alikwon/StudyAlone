@@ -66,4 +66,10 @@ public class MessageController {
 		}
 		return ResponseEntity.ok(saved);
 	}
+	@PostMapping("/api/messages/delete")
+	@ResponseBody
+	public ResponseEntity<Integer> deleteMessage(@RequestBody MessageData data) {
+		messageService.delete(data.getId());
+		return ResponseEntity.ok(1);
+	}
 }
